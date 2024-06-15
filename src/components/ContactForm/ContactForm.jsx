@@ -43,7 +43,7 @@ export class ContactForm extends Component {
       return;
     }
 
-    // if existing contact set an alert, it will not submit(return)
+    // if contact is existing, set an alert, it will not submit(return)
     const existingContact = contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
