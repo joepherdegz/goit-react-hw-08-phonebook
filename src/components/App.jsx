@@ -14,6 +14,30 @@ export class App extends Component {
     filter: '',
   };
 
+// componentDidMount() invoked after a component has been rendered to the DOM
+
+  componentDidMount() {
+    // If 'contacts' key in LS is not null, we write it in the 'contacts' state
+    const savedContacts = localStorage.getItem('contacts');
+
+    if (savedContacts !== null) {
+      this.setState({ contacts: JSON.parse(savedContacts) });
+    }
+    console.log('componentDidMount()');
+  }
+
+// componentDidUpdate() after a component is updated
+componentDidUpdate(_prevProps, prevState) {
+    // if 'contacts' state is updated, set value to localStorage
+    const { contacts } = this.state;
+
+    if (contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+
+    console.log('componentDidUpdate()');
+  }
+  
   addContact = newContact => {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
