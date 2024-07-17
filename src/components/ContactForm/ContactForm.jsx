@@ -2,32 +2,44 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
 import PropTypes from 'prop-types';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const ContactForm = ({ addContact, contacts }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleNameChange = e => {
-    setName(e.target.value);
-  };
-
-  const handleNumberChange = e => {
-    setNumber(e.target.value);
-  };
+  const handleNameChange = e => setName(e.target.value);
+  const handleNumberChange = e => setNumber(e.target.value);
 
   const handleSubmit = e => {
     e.preventDefault();
-
     if (name.trim() === '' || number.trim() === '') {
       return;
     }
 
-    const existingContact = contacts.find(
-      contact => contact.name.toLowerCase() === name.toLowerCase()
-    );
+    // const existingContact = contacts.find(
+    //   contact => contact.name.toLowerCase() === name.toLowerCase()
+    // );
+
+    const existingContact = contacts.find(contact => {
+      if (contact && typeof contact.name === 'string') {
+        return contact.name.toLowerCase() === name.toLowerCase();
+      } else {
+        // Log the contact causing the issue
+        console.error('Invalid contact in ContactForm:', contact);
+        return false;
+      }
+    });
+    
     if (existingContact) {
-      alert(`${name} is already in contacts!`);
+      Notify.failure(`${name} is already in your contacts!`, {
+        position: 'center-top',
+      });
       return;
+    } else {
+      Notify.success(`${name} is successfully added to your contacts!`, {
+        position: 'center-top',
+      });
     }
 
     addContact({
@@ -67,7 +79,7 @@ export const ContactForm = ({ addContact, contacts }) => {
           onChange={handleNumberChange}
         />
       </label>
-      <button className={css.formButton} type="submit">
+      <button className={css.btnSubmit} type="submit">
         Add Contact
       </button>
     </form>
@@ -84,5 +96,3 @@ ContactForm.propTypes = {
     })
   ).isRequired,
 };
-
- 

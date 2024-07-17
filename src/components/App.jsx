@@ -1,55 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact, deleteContact } from '../redux/contactsSlice';
+import { setFilter } from '../redux/filterSlice';
+import { getContacts, getFilter } from '../redux/selectors';
 import { ContactForm } from './ContactForm/ContactForm';
-import { SearchFilter } from './SearchFilter/SearchFilter';
+import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 
 export const App = () => {
-  const initialContacts = [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ];
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
 
-  const [contacts, setContacts] = useState(() => {
-    const savedContacts = localStorage.getItem('contacts');
-    return savedContacts !== null ? JSON.parse(savedContacts) : initialContacts;
+  const handleAddContact = newContact => {
+    // Placeholder for future Redux action
+    dispatch(addContact(newContact));
+  };
+
+  const handleDeleteContact = id => {
+    // Placeholder for future Redux action
+    dispatch(deleteContact(id));
+  };
+
+  const handleSetFilter = newFilter => {
+    // Placeholder for future Redux dispatch to update filter
+    dispatch(setFilter(newFilter));
+  };
+
+  // Calculate filtered contacts directly within the App component
+  // const filteredContacts = contacts.filter(contact =>
+  //   // contact.name.toLowerCase().includes(filter.toLowerCase())
+  //   contact.name && typeof contact.name === 'string' && contact.name.toLowerCase().includes(filter.toLowerCase())
+  // );
+
+   const filteredContacts = contacts.filter(contact => {
+    if (contact && typeof contact.name === 'string') {
+      return contact.name.toLowerCase().includes(filter.toLowerCase());
+    } else {
+      // Log the contact causing the issue
+      console.error('Invalid contact:', contact);
+      return false;
+    }
   });
-
-  const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  const addContact = newContact => {
-    setContacts(prevContacts => [...prevContacts, newContact]);
-  };
-
-  const deleteContact = id => {
-    setContacts(prevContacts => prevContacts.filter(contact => contact.id !== id));
-  };
-
-  const filterContact = () => {
-    const filterLowerCase = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filterLowerCase)
-    );
-  };
 
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm addContact={addContact} contacts={contacts} />
+      <ContactForm addContact={handleAddContact} contacts={contacts} />
 
       <h2>Contacts</h2>
-      <SearchFilter filter={filter} setFilter={setFilter} />
+      <Filter filter={filter} setFilter={handleSetFilter} />
       <ContactList
-        filterContact={filterContact}
-        deleteContact={deleteContact}
+        contacts={filteredContacts} // Passing the filteredContacts as prop
+        deleteContact={handleDeleteContact}
       />
     </div>
   );
 };
-
- 
