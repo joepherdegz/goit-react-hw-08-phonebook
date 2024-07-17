@@ -36,7 +36,10 @@ export const App = () => {
    const filteredContacts = contacts.filter(contact => {
     if (contact && typeof contact.name === 'string') {
       return contact.name.toLowerCase().includes(filter.toLowerCase());
-    }  
+    }  else {
+      console.error('Invalid contact:', contact);
+      return false;
+    }
   });
 
   return (
