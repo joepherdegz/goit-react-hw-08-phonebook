@@ -7,6 +7,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     max-width: 500px;
+    background-color: rgb(191, 240, 233);
 }
 
 .formField {
@@ -21,7 +22,7 @@
 
 .btnSubmit {
     padding: 10px 20px;
-    background-color: #4f0c55;
+    background-color: #a4b3e2;
     color: white;
     border: none;
     border-radius: 5px;
