@@ -24,13 +24,9 @@ export const ContactForm = ({ addContact, contacts }) => {
     const existingContact = contacts.find(contact => {
       if (contact && typeof contact.name === 'string') {
         return contact.name.toLowerCase() === name.toLowerCase();
-      } else {
-        // Log the contact causing the issue
-        console.error('Invalid contact in ContactForm:', contact);
-        return false;
-      }
+      }  
     });
-    
+
     if (existingContact) {
       Notify.failure(`${name} is already in your contacts!`, {
         position: 'center-top',
