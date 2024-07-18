@@ -1,4 +1,4 @@
-// src/redux/slices/filterSlice.js
+// src/redux/filterSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 // Define initial state for filter
