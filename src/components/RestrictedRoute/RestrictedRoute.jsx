@@ -7,10 +7,10 @@ import { Navigate } from 'react-router-dom';
  */
 
 export const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
-    const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
 
-    return isLoggedIn ? <Navigate to={redirectTo} /> : <Component />
-}
+  return isLoggedIn ? <Navigate to={redirectTo} /> : <Component />;
+};
 
 // if isLoggedIn is true, redirect the page to a new route (phonebook)
 // if isLoggedIn is false, display a placeholder component that prompts the user to login (register/login page)

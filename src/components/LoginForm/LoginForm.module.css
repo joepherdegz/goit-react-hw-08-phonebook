@@ -17,10 +17,12 @@ transition: border 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
 .loginFormInput:hover,
 .loginFormInput:active {
     outline: none;
-    border: 2px solid #e84a5f;
+    border: 2px solid #5e93f5;
 }
 
 .loginFormBtn {
+    margin-top: 10px;
+    font-weight: bolder;
     padding: 5px 10px;
     transition: border-color 250ms cubic-bezier(0.075, 0.82, 0.165, 1),
             background-color 250ms cubic-bezier(0.075, 0.82, 0.165, 1),
@@ -29,7 +31,7 @@ transition: border 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
 
 .loginFormBtn:hover,
 .loginFormBtn:active {
-    border-color: #e84a5f;
-        background-color: #e84a5f;
+    /* border-color: #e84a5f; */
+        background-color: #5e8fe9;
         color: white;
 }
