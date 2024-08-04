@@ -2,7 +2,7 @@ import { SharedLayout } from 'pages/SharedLayout';
 import { HomePage } from 'pages/Homepage';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { LoginPage } from '../pages/RegisterPage';
+import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
@@ -29,7 +29,7 @@ export const App = () => {
         <Route
           path="/login"
           element={
-            <RestrictedRoute redirectTo="contacts" component={LoginPage} />
+            <RestrictedRoute redirectTo="/contacts" component={LoginPage} />
           }
         />
       

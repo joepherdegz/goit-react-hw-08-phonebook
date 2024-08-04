@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from '../../redux/hooks/useAuth';
-import { Component } from "react";
+ 
 
 /**
  * - If the route is private and the user is logged in, render the component

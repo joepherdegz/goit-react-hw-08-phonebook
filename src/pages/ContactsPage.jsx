@@ -9,9 +9,9 @@ import {
   selectFilter,
   selectError,
 } from '../redux/contacts/contactSelectors';
-import { ContactForm } from './ContactForm/ContactForm';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './ContactList/ContactList';
+import { ContactForm } from 'components/ContactForm/ContactForm';
+import { Filter } from 'components/Filter/Filter';
+import { ContactList } from 'components/ContactList/ContactList';
 
 export const ContactsPage = () => {
   const visibleContacts = useSelector(selectVisibleContacts);
