@@ -1,5 +1,5 @@
 import { SharedLayout } from 'pages/SharedLayout';
-import HomePage from 'pages/HomePage';
+import HomePage from '../pages/HomePage';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
