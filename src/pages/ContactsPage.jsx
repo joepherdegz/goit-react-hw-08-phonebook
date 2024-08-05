@@ -12,6 +12,7 @@ import {
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
+import UserMenu from 'components/UserMenu/UserMenu';
 
 export const ContactsPage = () => {
   const visibleContacts = useSelector(selectVisibleContacts);
@@ -44,6 +45,7 @@ export const ContactsPage = () => {
 
   return (
     <div>
+      <UserMenu />
       <h1>Phonebook</h1>
       <ContactForm addContact={handleAddContact} contacts={visibleContacts} />
 

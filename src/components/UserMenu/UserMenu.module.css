@@ -1,0 +1,9 @@
+.usermenufield {
+    display: flex;
+    justify-content: space-between;
+}
+
+.emailfield {
+    padding: 10px;
+    border: 2px solid;
+}
